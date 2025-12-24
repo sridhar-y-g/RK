@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered career guidance system with intelligent rule-based recommendations">
+    <meta name="theme-color" content="#667eea">
+    <title>Career Guidance System | Intelligent Career Path Finder</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-title-wrapper">
+                    <img src="rk logo.jpeg" alt="Ranjith Kumar Logo" class="header-logo-image">
+                    <div class="header-title">
+                        <h1>Career Guidance System</h1>
+                        <p>Intelligent rule-based career recommendations using advanced analysis of your interests and strengths</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            <!-- Step 1: Name Input -->
+            <section class="form-section active" id="step1">
+                <div class="section-header">
+                    <h2>Let's Begin Your Journey!</h2>
+                    <p>Discover the perfect career path tailored to your unique profile</p>
+                </div>
+
+                <div class="error-message" id="nameError"></div>
+
+                <div class="form-group">
+                    <label><span class="emoji">👤</span> What's your full name?</label>
+                    <input type="text" id="nameInput" placeholder="e.g., John Smith" autocomplete="name" />
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="app.validateAndNext('step1')">Continue →</button>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Step 1 of 4</span>
+                        <span>25%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Interest Area -->
+            <section class="form-section" id="step2">
+                <div class="section-header">
+                    <h2>Your Interests Matter</h2>
+                    <p>Select the field that excites you the most</p>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="emoji">📌</span> Primary Area of Interest</label>
+                    <div class="options-grid" id="interestsContainer"></div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="app.goBack('step2')">← Back</button>
+                    <button class="btn-primary" onclick="app.validateAndNext('step2')">Continue →</button>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Step 2 of 4</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: Strengths -->
+            <section class="form-section" id="step3">
+                <div class="section-header">
+                    <h2>Showcase Your Strengths</h2>
+                    <p>Select up to 3 strengths that define your professional profile (or choose Other)</p>
+                </div>
+
+                <div class="error-message" id="strengthsError"></div>
+
+                <div class="form-group">
+                    <label><span class="emoji">💪</span> Your Top Strengths</label>
+                    <div class="checkbox-group" id="strengthsContainer"></div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="app.goBack('step3')">← Back</button>
+                    <button class="btn-primary" onclick="app.validateAndNext('step3')">Continue →</button>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Step 3 of 4</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4: Work Style -->
+            <section class="form-section" id="step4">
+                <div class="section-header">
+                    <h2>Your Work Style</h2>
+                    <p>Tell us about your preferred work environment and approach</p>
+                </div>
+
+                <div class="error-message" id="workStyleError"></div>
+
+                <div class="form-group">
+                    <label><span class="emoji">🏢</span> Preferred Work Environment</label>
+                    <div class="radio-group" id="workEnvironmentContainer"></div>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="emoji">🚀</span> Career Pace & Growth</label>
+                    <div class="radio-group" id="careerPaceContainer"></div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="app.goBack('step4')">← Back</button>
+                    <button class="btn-primary" onclick="app.validateAndNext('step4')">Get Recommendations →</button>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Step 4 of 4</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results -->
+            <section class="results-section" id="results">
+                <div class="results-header">
+                    <div class="logo-badge">
+                        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Wings Left -->
+                            <g id="wings-left">
+                                <path d="M 60 80 Q 40 60, 35 85 Q 30 110, 45 120" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 65 85 Q 50 70, 42 92 Q 38 115, 52 125" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 70 90 Q 58 78, 50 100 Q 48 120, 60 128" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 75 88 Q 65 80, 58 103 Q 57 122, 68 129" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                            </g>
+                            
+                            <!-- Wings Right -->
+                            <g id="wings-right">
+                                <path d="M 140 80 Q 160 60, 165 85 Q 170 110, 155 120" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 135 85 Q 150 70, 158 92 Q 162 115, 148 125" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 130 90 Q 142 78, 150 100 Q 152 120, 140 128" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 125 88 Q 135 80, 142 103 Q 143 122, 132 129" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                            </g>
+                            
+                            <!-- Outer Circle Gold -->
+                            <circle cx="100" cy="120" r="68" fill="none" stroke="#C4A863" stroke-width="3"/>
+                            
+                            <!-- Outer Circle Black -->
+                            <circle cx="100" cy="120" r="65" fill="black" stroke="#C4A863" stroke-width="2"/>
+                            
+                            <!-- Inner Circle Gold -->
+                            <circle cx="100" cy="120" r="60" fill="none" stroke="#D4B876" stroke-width="1"/>
+                            
+                            <!-- Eagle/Phoenix centered in circle -->
+                            <g id="bird" transform="translate(100, 100)">
+                                <path d="M 0,-20 L -8,-8 L -15,0 L -8,5 L -3,2 L 0,8 L 3,2 L 8,5 L 15,0 L 8,-8 Z" fill="#C4A863"/>
+                            </g>
+                            
+                            <!-- RK Text -->
+                            <text x="100" y="135" font-size="32" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial, sans-serif">RK</text>
+                            
+                            <!-- Since 2003 text -->
+                            <text x="100" y="152" font-size="10" fill="#C4A863" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">Since 2003</text>
+                            
+                            <!-- Top text arc path -->
+                            <defs>
+                                <path id="topArc" d="M 45,120 A 55,55 0 0,1 155,120" fill="none"/>
+                            </defs>
+                            <text font-size="14" font-weight="bold" fill="#1F2937" letter-spacing="4">
+                                <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+                                    RANJITH
+                                </textPath>
+                            </text>
+                            
+                            <!-- Left Star -->
+                            <polygon points="50,175 52,182 60,182 54,187 56,194 50,190 44,194 46,187 40,182 48,182" fill="#C4A863"/>
+                            
+                            <!-- Right Star -->
+                            <polygon points="150,175 152,182 160,182 154,187 156,194 150,190 144,194 146,187 140,182 148,182" fill="#C4A863"/>
+                        </svg>
+                    </div>
+                    <div class="results-title-section">
+                        <h2><span class="emoji">📊</span> Your Career Analysis</h2>
+                    </div>
+                </div>
+
+                <div class="profile-card" id="profileCard"></div>
+
+                <div class="stats-grid" id="statsGrid"></div>
+
+                <div class="compatibility-chart" id="compatibilityChart"></div>
+
+                <div class="results-header">
+                    <div class="logo-badge">
+                        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Wings Left -->
+                            <g id="wings-left2">
+                                <path d="M 60 80 Q 40 60, 35 85 Q 30 110, 45 120" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 65 85 Q 50 70, 42 92 Q 38 115, 52 125" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 70 90 Q 58 78, 50 100 Q 48 120, 60 128" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 75 88 Q 65 80, 58 103 Q 57 122, 68 129" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                            </g>
+                            
+                            <!-- Wings Right -->
+                            <g id="wings-right2">
+                                <path d="M 140 80 Q 160 60, 165 85 Q 170 110, 155 120" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 135 85 Q 150 70, 158 92 Q 162 115, 148 125" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 130 90 Q 142 78, 150 100 Q 152 120, 140 128" fill="#C4A863" stroke="#8B7355" stroke-width="1"/>
+                                <path d="M 125 88 Q 135 80, 142 103 Q 143 122, 132 129" fill="#D4B876" stroke="#8B7355" stroke-width="1"/>
+                            </g>
+                            
+                            <!-- Outer Circle Gold -->
+                            <circle cx="100" cy="120" r="68" fill="none" stroke="#C4A863" stroke-width="3"/>
+                            
+                            <!-- Outer Circle Black -->
+                            <circle cx="100" cy="120" r="65" fill="black" stroke="#C4A863" stroke-width="2"/>
+                            
+                            <!-- Inner Circle Gold -->
+                            <circle cx="100" cy="120" r="60" fill="none" stroke="#D4B876" stroke-width="1"/>
+                            
+                            <!-- Eagle/Phoenix centered in circle -->
+                            <g id="bird2" transform="translate(100, 100)">
+                                <path d="M 0,-20 L -8,-8 L -15,0 L -8,5 L -3,2 L 0,8 L 3,2 L 8,5 L 15,0 L 8,-8 Z" fill="#C4A863"/>
+                            </g>
+                            
+                            <!-- RK Text -->
+                            <text x="100" y="135" font-size="32" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial, sans-serif">RK</text>
+                            
+                            <!-- Since 2003 text -->
+                            <text x="100" y="152" font-size="10" fill="#C4A863" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">Since 2003</text>
+                            
+                            <!-- Top text arc path -->
+                            <defs>
+                                <path id="topArc2" d="M 45,120 A 55,55 0 0,1 155,120" fill="none"/>
+                            </defs>
+                            <text font-size="14" font-weight="bold" fill="#1F2937" letter-spacing="4">
+                                <textPath href="#topArc2" startOffset="50%" text-anchor="middle">
+                                    RANJITH
+                                </textPath>
+                            </text>
+                            
+                            <!-- Left Star -->
+                            <polygon points="50,175 52,182 60,182 54,187 56,194 50,190 44,194 46,187 40,182 48,182" fill="#C4A863"/>
+                            
+                            <!-- Right Star -->
+                            <polygon points="150,175 152,182 160,182 154,187 156,194 150,190 144,194 146,187 140,182 148,182" fill="#C4A863"/>
+                        </svg>
+                    </div>
+                    <div class="results-title-section">
+                        <h2><span class="emoji">🎯</span> Personalized Recommendations</h2>
+                    </div>
+                </div>
+
+                <div class="recommendations-grid" id="recommendationsContainer"></div>
+
+                <div class="next-steps">
+                    <h3><span class="emoji">📌</span> Your Next Steps</h3>
+                    <ol>
+                        <li><strong>Research</strong> each recommended career in detail through industry insights</li>
+                        <li><strong>Learn</strong> the recommended areas at your own pace with online resources</li>
+                        <li><strong>Network</strong> with professionals in these fields to gain real-world perspectives</li>
+                        <li><strong>Build Projects</strong> to develop practical, portfolio-worthy skills</li>
+                        <li><strong>Track Progress</strong> and revisit this assessment periodically</li>
+                    </ol>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-export" onclick="app.exportResults()"><span class="emoji">📥</span> Export Results</button>
+                    <button class="btn-export" onclick="app.exportPDF()"><span class="emoji">📄</span> Download PDF</button>
+                    <button class="btn-primary" onclick="app.startOver()">Take Assessment Again →</button>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>Assessment Complete!</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
